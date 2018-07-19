@@ -44,7 +44,6 @@ class Menu extends Component {
 		return (
 			<div className="container">
 				<div className="row">{menu}</div>
-
 				<DishDetail dish={this.state.selectedDish} />
 			</div>
 		);
