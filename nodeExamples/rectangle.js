@@ -1,6 +1,6 @@
 module.exports = (x, y, callback) => {
 	if (x <= 0 || y <= 0) {
-		setTimeout(() => callback(new Error('Error!! Dementions should be greater than 0'), null), 2000);
+		setTimeout(() => callback(new Error('Error!! Dimensions should be greater than 0'), null), 2000);
 	} else {
 		setTimeout(
 			() =>
