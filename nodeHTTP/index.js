@@ -20,19 +20,17 @@ const server = http.createServer((request, response) => {
 		const fileExtension = path.extname(filePath);
 
 		if (fileExtension == '.html') {
-			fs.exists(filePath, exists => {
-				if (!exists) {
-					response.statusCode = 404;
-					response.setHeader('Content-Type', 'text/html');
-					response.end(`<html><body><h1>Error: 404 ${fileUrl} not found</h1></body></html>`);
-
-					return;
-				}
-
+			if (fs.existsSync(filePath)) {
 				response.statusCode = 200;
 				response.setHeader('Content-Type', 'text/html');
 				fs.createReadStream(filePath).pipe(response);
-			});
+			} else {
+				response.statusCode = 404;
+				response.setHeader('Content-Type', 'text/html');
+				response.end(`<html><body><h1>Error: 404 ${fileUrl} not found</h1></body></html>`);
+
+				return;
+			}
 		} else {
 			response.statusCode = 404;
 			response.setHeader('Content-Type', 'text/html');
