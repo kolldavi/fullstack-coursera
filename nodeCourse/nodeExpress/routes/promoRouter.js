@@ -1,6 +1,6 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var promoRouter = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
+const promoRouter = express.Router();
 
 promoRouter.use(bodyParser.json());
 
@@ -13,6 +13,11 @@ promoRouter
 	})
 	.get((req, res, next) => {
 		res.end('Will send all the promotions to you!');
+	})
+	.put((req, res, next) => {
+		//403 error is not supported
+		res.statusCode = 403;
+		res.end('PUT operation not supported on /promotions');
 	})
 	.post((req, res, next) => {
 		res.end('Will add the promotion: ' + req.body.name + ' with details: ' + req.body.description);
