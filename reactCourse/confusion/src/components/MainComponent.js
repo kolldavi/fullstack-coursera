@@ -54,10 +54,6 @@ class Main extends Component {
 					<Route exact path="/aboutus" component={() => <About leaders={LEADERS} />} />
 					<Redirect to="/home" />
 				</Switch>
-
-				{
-					//<DishDetail dish={this.state.dishes.filter(dish => dish.id === this.state.selectedDish)[0]} />
-				}
 				<Footer />
 			</div>
 		);
