@@ -17,7 +17,6 @@ const RenderCard = ({ dish }) => {
 		);
 };
 const RenderComment = ({ comments }) => {
-	console.log(comments);
 	return comments && comments !== null && comments.length > 0 ? (
 		<div className="col-12 col-md-5 m-1">
 			<h4>Comments</h4>

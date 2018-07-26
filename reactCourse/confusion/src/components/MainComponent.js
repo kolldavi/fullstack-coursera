@@ -10,6 +10,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
+import About from './About';
 
 class Main extends Component {
 	constructor(props) {
@@ -50,6 +51,7 @@ class Main extends Component {
 					<Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />
 					<Route path="/menu/:dishId" component={DishWithId} />
 					<Route exact path="/contactus" component={Contact} />} />
+					<Route exact path="/aboutus" component={() => <About leaders={LEADERS} />} />
 					<Redirect to="/home" />
 				</Switch>
 
