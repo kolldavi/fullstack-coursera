@@ -1,5 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 const RenderCard = ({ dish }) => {
 	if (dish != null)
 		return (
@@ -14,11 +16,12 @@ const RenderCard = ({ dish }) => {
 			</div>
 		);
 };
-const RenderComment = ({ dish }) => {
-	return dish.comments && dish.comments !== null && dish.comments.length > 0 ? (
+const RenderComment = ({ comments }) => {
+	console.log(comments);
+	return comments && comments !== null && comments.length > 0 ? (
 		<div className="col-12 col-md-5 m-1">
 			<h4>Comments</h4>
-			{dish.comments.map(comment => (
+			{comments.map(comment => (
 				<div key={comment.id}>
 					<p>{comment.comment}</p>
 					<p>
@@ -37,13 +40,25 @@ const RenderComment = ({ dish }) => {
 	);
 };
 
-function DishDetail({ dish }) {
+function DishDetail({ dish, comments }) {
 	if (dish != null)
 		return (
 			<div className="container">
 				<div className="row">
+					<Breadcrumb>
+						<BreadcrumbItem>
+							<Link to="/menu">Menu</Link>
+						</BreadcrumbItem>
+						<BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+					</Breadcrumb>
+					<div className="col-12">
+						<h3>{dish.name}</h3>
+						<hr />
+					</div>
+				</div>
+				<div className="row">
 					<RenderCard dish={dish} />
-					<RenderComment dish={dish} />
+					<RenderComment comments={comments} />
 				</div>
 			</div>
 		);
