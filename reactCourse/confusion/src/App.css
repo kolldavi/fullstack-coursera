@@ -33,3 +33,7 @@
 .navbar-dark {
   background-color: #512DA8;
 }
+
+img:not([alt]) {
+  filter: grayscale(100%);
+}
