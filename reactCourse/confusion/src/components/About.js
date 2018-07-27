@@ -8,8 +8,10 @@ function RenderLeaders({ leaders }) {
 				<Media object src={leader.image} alt={`image of${leader.name}`} />
 			</Media>
 			<Media body>
-				<Media heading>{leader.name}</Media>
-				<Media middle className="mt-3 mb-3">
+				<Media heading top>
+					{leader.name}
+				</Media>
+				<Media middle className="mt-2 mb-2">
 					{leader.designation}
 				</Media>
 				<Media bottom className="mb-3">
