@@ -15,8 +15,28 @@ connect.then(db => {
 	newDish
 		.save()
 		.then(dish => {
-			console.log('dish:', dish);
-			return Dishes.find({});
+			console.log(dish);
+
+			return Dishes.findByIdAndUpdate(
+				dish._id,
+				{
+					$set: { description: 'Updated test' }
+				},
+				{
+					new: true
+				}
+			).exec();
+		})
+		.then(dish => {
+			console.log(dish);
+
+			dish.comments.push({
+				rating: 5,
+				comment: "I'm getting a sinking feeling!",
+				author: 'Leonardo di Carpaccio'
+			});
+
+			return dish.save();
 		})
 		.then(dishes => {
 			console.log('dishes:', dishes);
