@@ -64,7 +64,7 @@ class Contact extends React.Component {
 	};
 	render() {
 		const errors = this.validate(this.state.firstName, this.state.lastName, this.state.telNum, this.state.email);
-		console.log(errors);
+
 		return (
 			<div className="container">
 				<Breadcrumb>
