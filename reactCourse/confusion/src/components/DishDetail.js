@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import CommentModal from './CommentModal';
 const RenderCard = ({ dish }) => {
 	if (dish != null)
 		return (
@@ -33,6 +34,8 @@ const RenderComment = ({ comments }) => {
 					</p>
 				</div>
 			))}
+
+			<CommentModal />
 		</div>
 	) : (
 		<div />
