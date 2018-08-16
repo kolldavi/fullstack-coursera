@@ -6,8 +6,6 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 const required = val => val && val.length;
 const maxLength = length => val => !val || val.length <= length;
 const minLength = length => val => val && val.length >= length;
-const isNumber = val => !isNaN(Number(val));
-const isValidEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 class CommentModal extends React.Component {
 	state = {
@@ -19,12 +17,9 @@ class CommentModal extends React.Component {
 		});
 	};
 	handleSubmit = values => {
-		//dishId: dishId,
-		// rating: rating,
-		// author: author,
-		// comment: comment
-		const { rating, author, comment } = values;
-		this.props.addComment(this.props.dishId, rating, author, comment);
+		console.log('values', values);
+		const { rating, comment, author } = values;
+		this.props.addComment(this.props.dishId, parseInt(rating, 10), comment, author);
 		this.toggle();
 	};
 	render() {
@@ -106,6 +101,21 @@ class CommentModal extends React.Component {
 										id="comment"
 										name="comment"
 										rows="6"
+										validators={{
+											required,
+											minLength: minLength(1),
+											maxLength: maxLength(500)
+										}}
+									/>
+									<Errors
+										className="text-danger"
+										model=".comment"
+										show="touched"
+										messages={{
+											required: 'Required',
+											minLength: ' Must be leave a comment',
+											maxLength: 'Must be less than 500 characters'
+										}}
 									/>
 								</Col>
 							</Row>

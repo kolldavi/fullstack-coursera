@@ -4,9 +4,11 @@ import * as ActionTypes from '../ActionTypes';
 export const Comments = (state = COMMENTS, action) => {
 	switch (action.type) {
 		case ActionTypes.ADD_COMMENT:
-			var comment = action.payload;
-			comment.id = state.length;
-			comment.date = new Date().toISOString();
+			const comment = {
+				id: state.length,
+				...action.payload,
+				date: new Date().toISOString()
+			};
 			return [...state, comment];
 
 		default:
