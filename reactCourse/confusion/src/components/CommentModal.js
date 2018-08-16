@@ -19,7 +19,12 @@ class CommentModal extends React.Component {
 		});
 	};
 	handleSubmit = values => {
-		alert(JSON.stringify(values));
+		//dishId: dishId,
+		// rating: rating,
+		// author: author,
+		// comment: comment
+		const { rating, author, comment } = values;
+		this.props.addComment(this.props.dishId, rating, author, comment);
 		this.toggle();
 	};
 	render() {
@@ -62,14 +67,14 @@ class CommentModal extends React.Component {
 								</Col>
 							</Row>
 							<Row className="form-group">
-								<Label htmlFor="name" md={2}>
+								<Label htmlFor="author" md={2}>
 									Name
 								</Label>
 								<Col md={10}>
 									<Control.text
-										model=".name"
-										id="name"
-										name="name"
+										model=".author"
+										id="author"
+										name="author"
 										className="form-control"
 										placeholder="Name"
 										validators={{
@@ -80,7 +85,7 @@ class CommentModal extends React.Component {
 									/>
 									<Errors
 										className="text-danger"
-										model=".name"
+										model=".author"
 										show="touched"
 										messages={{
 											required: 'Required',

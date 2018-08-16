@@ -17,7 +17,7 @@ const RenderCard = ({ dish }) => {
 			</div>
 		);
 };
-const RenderComment = ({ comments }) => {
+const RenderComment = ({ comments, addComment, dishId }) => {
 	return comments && comments !== null && comments.length > 0 ? (
 		<div className="col-12 col-md-5 m-1">
 			<h4>Comments</h4>
@@ -35,14 +35,14 @@ const RenderComment = ({ comments }) => {
 				</div>
 			))}
 
-			<CommentModal />
+			<CommentModal dishId={dishId} addComment={addComment} />
 		</div>
 	) : (
 		<div />
 	);
 };
 
-function DishDetail({ dish, comments }) {
+function DishDetail({ dish, comments, addComment }) {
 	if (dish != null)
 		return (
 			<div className="container">
@@ -60,7 +60,7 @@ function DishDetail({ dish, comments }) {
 				</div>
 				<div className="row">
 					<RenderCard dish={dish} />
-					<RenderComment comments={comments} />
+					<RenderComment comments={comments} addComment={addComment} dishId={dish.id} />
 				</div>
 			</div>
 		);
