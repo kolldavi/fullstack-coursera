@@ -3,6 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import CommentModal from './CommentModal';
+import { Loading } from './Loading';
 const RenderCard = ({ dish }) => {
 	if (dish != null)
 		return (
@@ -42,8 +43,24 @@ const RenderComment = ({ comments, addComment, dishId }) => {
 	);
 };
 
-function DishDetail({ dish, comments, addComment }) {
-	if (dish != null)
+function DishDetail({ dish, comments, addComment, isLoading, errMsg }) {
+	if (isLoading) {
+		return (
+			<div className="container">
+				<div className="row">
+					<Loading />
+				</div>
+			</div>
+		);
+	} else if (errMsg) {
+		return (
+			<div className="container">
+				<div className="row">
+					<h4>{errMsg}</h4>
+				</div>
+			</div>
+		);
+	} else if (dish != null)
 		return (
 			<div className="container">
 				<div className="row">
