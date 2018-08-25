@@ -3,7 +3,9 @@ import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reac
 import { Loading } from './Loading';
 import { baseUrl } from '../shared/baseUrl';
 console.log(baseUrl);
-function RenderCard({ item, isLoading, errMsg }) {
+function RenderCard(props) {
+	console.log('props', props);
+	const { item, isLoading, errMsg } = props;
 	if (isLoading) {
 		return <Loading />;
 	} else if (errMsg) {
